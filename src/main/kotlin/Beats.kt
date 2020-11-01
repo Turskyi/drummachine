@@ -38,4 +38,9 @@ fun main(){
         }
         playBeats("x----x----","audio/crash_cymbal.aiff")
     }
+
+    /**
+     * example of using test. in case test failed it will throw an exception
+     */
+    TotallerTest().shouldBeAbleToAdd3And4()
 }

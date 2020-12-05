@@ -37,6 +37,7 @@ fun main(){
             playBeats("x-x-x-x-x-x-","audio/toms.aiff")
         }
         playBeats("x----x----","audio/crash_cymbal.aiff")
+        println("_" + null)
     }
 
     /**

@@ -1,17 +1,19 @@
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.io.File
 import javax.sound.sampled.AudioSystem
-import kotlinx.coroutines.*
 
-suspend fun playBeats(beats: String, file: String){
+suspend fun playBeats(beats: String, file: String) {
     val parts = beats.split("x")
     var count = 0
-    for(part in parts){
+    for (part in parts) {
         count += part.length + 1
-        if (part == ""){
+        if (part == "") {
             playSound(file)
         } else {
             delay(100 * (part.length + 1L))
-            if (count < beats.length){
+            if (count < beats.length) {
                 playSound(file)
             }
         }
@@ -27,21 +29,21 @@ fun playSound(file: String) {
     clip.start()
 }
 
-fun main(){
+fun main() {
     /**
-     * “The runBlocking function blocks the current thread until the code it contains has finished running.”
-     * it allows us to launch many coroutines in one thread
+     * “The runBlocking function blocks the current thread until the code it
+     * contains has finished running.”
+     * It allows us to launch many coroutines in one thread.
      */
     runBlocking {
-        launch{
-            playBeats("x-x-x-x-x-x-","audio/toms.aiff")
+        launch {
+            playBeats("x-x-x-x-x-x", "audio/toms.aiff")
         }
-        playBeats("x----x----","audio/crash_cymbal.aiff")
-        println("_" + null)
-    }
 
-    /**
-     * example of using test. in case test failed it will throw an exception
-     */
-    TotallerTest().shouldBeAbleToAdd3And4()
+        launch {
+            playBeats("x----x----x", "audio/crash_cymbal.aiff")
+        }
+
+        playBeats("--x--x---x-", "audio/high_hat.aiff")
+    }
 }

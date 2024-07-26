@@ -6,6 +6,5 @@ class Totaller(var total: Int = 0) {
 
         return total
 
-        }
-
+    }
 }
